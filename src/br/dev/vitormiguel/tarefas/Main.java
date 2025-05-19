@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import br.dev.vitormiguel.tarefas.model.Funcionario;
+
 public class Main {
 
 	private static String path = "C:\\Users\\25132565\\ProjetoTarefas\\tarefas.txt";
@@ -14,7 +16,17 @@ public class Main {
 	public static void main(String[] args) {
 		
 //		gravarArquivo();
-		lerArquivo();
+//		lerArquivo();
+		
+		Funcionario funcionario1 = new Funcionario("Maria da Silva");
+		Funcionario funcionario2 = new Funcionario();
+		Funcionario funcionario3 = new Funcionario("Programador", "Ana Maria");
+		Funcionario funcionario4 = new Funcionario("Programador", "Pedro", 2);
+		
+		System.out.println(funcionario1);
+		System.out.println(funcionario2);
+		System.out.println(funcionario3);
+		System.out.println(funcionario4);
 		
 	}
 
