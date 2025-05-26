@@ -6,8 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.UUID;
 
+import br.dev.vitormiguel.tarefas.dao.FuncionarioDAO;
 import br.dev.vitormiguel.tarefas.model.Funcionario;
+import br.dev.vitormiguel.tarefas.ui.FrameFuncionario;
+import br.dev.vitormiguel.tarefas.utils.Utils;
 
 public class Main {
 
@@ -18,15 +22,17 @@ public class Main {
 //		gravarArquivo();
 //		lerArquivo();
 		
-		Funcionario funcionario1 = new Funcionario("Maria da Silva");
-		Funcionario funcionario2 = new Funcionario();
-		Funcionario funcionario3 = new Funcionario("Programador", "Ana Maria");
-		Funcionario funcionario4 = new Funcionario("Programador", "Pedro", 2);
+		new FrameFuncionario();
 		
-		System.out.println(funcionario1);
-		System.out.println(funcionario2);
-		System.out.println(funcionario3);
-		System.out.println(funcionario4);
+//		Funcionario f = new Funcionario();
+//		f.setNome("Paulo Gomes");
+//		f.setCargo("Programador Júnior");
+//		f.setSalario(1989.73);
+//		
+//		FuncionarioDAO dao = new FuncionarioDAO(f);
+//		
+//		dao.gravar();
+		
 		
 	}
 
