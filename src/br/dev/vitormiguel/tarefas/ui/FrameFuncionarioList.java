@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -26,15 +27,15 @@ public class FrameFuncionarioList {
 	private DefaultTableModel modelFuncionarios;
 	private String[] colunas = {"CÓDIGO", "NOME", "CARGO"};
 	
-	public FrameFuncionarioList() {
-		criarTela();
+	public FrameFuncionarioList(JFrame frame) {
+		criarTela(frame);
 	}
 	
-	private void criarTela() {
+	private void criarTela(JFrame frame) {
 		
-		JFrame tela = new JFrame();
+		JDialog tela = new JDialog();
 		tela.setSize(500, 500);
-		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tela.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(null);
 		tela.setTitle("Lista da Funcionários");
@@ -64,7 +65,7 @@ public class FrameFuncionarioList {
 		
 		btnCadastro = new JButton("Cadastrar");
 		btnCadastro.setBounds(10, 380, 200, 40);
-		
+			
 		btnCadastro.addActionListener(new ActionListener() {
 			
 			@Override

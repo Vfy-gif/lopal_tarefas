@@ -11,10 +11,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import javax.swing.JFrame;
+
 import br.dev.vitormiguel.tarefas.dao.FuncionarioDAO;
 import br.dev.vitormiguel.tarefas.model.Funcionario;
+import br.dev.vitormiguel.tarefas.ui.FrameCadastroDeTarefas;
 import br.dev.vitormiguel.tarefas.ui.FrameFuncionario;
 import br.dev.vitormiguel.tarefas.ui.FrameFuncionarioList;
+import br.dev.vitormiguel.tarefas.ui.FrameGerenciadorDeTarefas;
+import br.dev.vitormiguel.tarefas.ui.FrameListaDeTarefas;
 import br.dev.vitormiguel.tarefas.utils.Utils;
 
 public class Main {
@@ -23,7 +28,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		new FrameFuncionarioList(); 
+		//new FrameFuncionarioList();
+		
+		FrameGerenciadorDeTarefas test = new FrameGerenciadorDeTarefas();
+		test.criarTela();
 		
 //		
 //		List<String> frutas = new ArrayList<String>();

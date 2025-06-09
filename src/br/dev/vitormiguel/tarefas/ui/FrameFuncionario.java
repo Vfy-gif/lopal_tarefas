@@ -27,11 +27,11 @@ public class FrameFuncionario {
 	private JButton btnSalvar;
 	private JButton btnSair;
 	
-	public FrameFuncionario(JFrame frame) {
+	public FrameFuncionario(JDialog frame) {
 		criarTela(frame);
 	}
 	
-	private void criarTela(JFrame frame) {
+	private void criarTela(JDialog frame) {
 		JDialog tela = new JDialog(frame, true);
 		tela.setTitle("Cadastro");
 		tela.setSize(400, 400);
