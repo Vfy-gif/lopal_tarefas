@@ -1,14 +1,21 @@
 package br.dev.vitormiguel.tarefas.ui;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import br.dev.vitormiguel.tarefas.dao.FuncionarioDAO;
+import br.dev.vitormiguel.tarefas.model.Funcionario;
 import br.dev.vitormiguel.tarefas.model.Status;
+import br.dev.vitormiguel.tarefas.model.Tarefas;
 
 public class FrameCadastroDeTarefas {
 
@@ -26,6 +33,8 @@ public class FrameCadastroDeTarefas {
 	private JComboBox cmbStatus;
 	private JLabel labelResponsavel;
 	private JComboBox cmbResponsavel;
+	private JButton btnSalvar;
+	private JButton btnSair;
 	
 	public FrameCadastroDeTarefas(JDialog dialog) {
 		criarTela(dialog);
@@ -73,8 +82,47 @@ public class FrameCadastroDeTarefas {
 		
 		labelResponsavel = new JLabel("Responsável:");
 		labelResponsavel.setBounds(10, 385, 150, 30);
+		JComboBox cmbResponsavel = new JComboBox();
+		cmbResponsavel.setBounds(10, 415, 150, 30);
+		
+		FuncionarioDAO dao = new FuncionarioDAO();
+		List<Funcionario> funcionarios = dao.listar();
+		
+		String[][] responsaveis = new String[funcionarios.size()][1];
+		int i = 0;
+		for (Funcionario f : funcionarios) {
+			responsaveis[0][0] = f.getNome();
+			i++;
+			
+			cmbResponsavel.addItem(responsaveis[0][0]);
+		}
+		String responsavelSelecionado = (String) cmbResponsavel.getSelectedItem();
 		
 		
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(10, 465, 175, 40);
+		
+		btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				limparFormulario();
+				
+			}
+		});
+		
+		btnSair = new JButton("Sair");
+		btnSair.setBounds(200, 465, 175, 40);
+		
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				tela.dispose();
+				
+			}
+		});
 		
 		
 		Container painel = tela.getContentPane();
@@ -91,12 +139,22 @@ public class FrameCadastroDeTarefas {
 		painel.add(labelStatus);
 		painel.add(cmbStatus);
 		painel.add(labelResponsavel);
+		painel.add(cmbResponsavel);
+		painel.add(btnSalvar);
+		painel.add(btnSair);
 		
 		
 		tela.setVisible(true);
 		
 	}
-	
+		private void limparFormulario() {
+			this.txtTitulo = null;
+			this.txtDescricao = null;
+			this.txtDataIncial = null;
+			this.txtprazo = null;
+			this.txtDataDeConclusao = null;
+			txtTitulo.requestFocus();
+		}
 	
 	
 }

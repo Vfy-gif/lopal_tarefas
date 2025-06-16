@@ -7,9 +7,11 @@ public class Tarefas {
 	private String titulo;
 	private String descricao;
 	private String dataInicial;
-	private int prazo;
+	private double prazo;
 	private String dataConclusao;
 	private String codigo;
+	private Status status;
+	private String[] responsavel;
 	
 	public Tarefas(String titulo) {
 		this.titulo = titulo;
@@ -28,14 +30,14 @@ public class Tarefas {
 		
 	}
 	
-	public Tarefas(int prazo, String titulo, String descricao) {
+	public Tarefas(double prazo, String titulo, String descricao) {
 		this.prazo = prazo;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.codigo = Utils.gerarUUID8();
 	}
 	
-	public Tarefas(int prazo, String titulo, String descricao, String dataInicial, String dataConclusao) {
+	public Tarefas(double prazo, String titulo, String descricao, String dataInicial, String dataConclusao, Status status, String[] responsavel) {
 		
 		this.prazo = prazo;
 		this.dataInicial = dataInicial;
@@ -43,6 +45,8 @@ public class Tarefas {
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.codigo = Utils.gerarUUID8();
+		this.status = status;
+		this.responsavel = responsavel;
 		
 	}
 
@@ -70,11 +74,11 @@ public class Tarefas {
 		this.dataInicial = dataInicial;
 	}
 
-	public int getPrazo() {
+	public double getPrazo() {
 		return prazo;
 	}
 
-	public void setPrazo(int prazo) {
+	public void setPrazo(double prazo) {
 		this.prazo = prazo;
 	}
 
@@ -94,5 +98,26 @@ public class Tarefas {
 		this.codigo = codigo;
 	}
 	
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public String[] getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(String[] responsavel) {
+		this.responsavel = responsavel;
+	}
+
+	public String toString() {
+		String tarefa = titulo + "," + descricao + "," + dataInicial + "," + prazo + "," + dataConclusao + "," + status + "," + responsavel + "\n";
+		return tarefa;
+	}
 	
 }
