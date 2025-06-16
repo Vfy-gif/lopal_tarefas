@@ -36,7 +36,7 @@ public class FrameFuncionario {
 		tela.setTitle("Cadastro");
 		tela.setSize(400, 400);
 		tela.setResizable(false);
-		tela.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		tela.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(frame);
 		

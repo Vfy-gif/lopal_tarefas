@@ -33,8 +33,9 @@ public class FrameGerenciadorDeTarefas {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				new FrameFuncionarioList(tela);
-				tela.setVisible(false);
+				
 			}
 		});
 		
@@ -45,6 +46,7 @@ public class FrameGerenciadorDeTarefas {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				new FrameListaDeTarefas(tela);
 				
 			}

@@ -33,11 +33,11 @@ public class FrameFuncionarioList {
 	
 	private void criarTela(JFrame frame) {
 		
-		JDialog tela = new JDialog();
+		JDialog tela = new JDialog(frame, true);
 		tela.setSize(500, 500);
-		tela.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		tela.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		tela.setLayout(null);
-		tela.setLocationRelativeTo(null);
+		tela.setLocationRelativeTo(frame);
 		tela.setTitle("Lista da Funcionários");
 		tela.setResizable(false);
 		

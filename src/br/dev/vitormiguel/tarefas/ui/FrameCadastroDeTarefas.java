@@ -27,19 +27,19 @@ public class FrameCadastroDeTarefas {
 	private JLabel labelResponsavel;
 	private JComboBox cmbResponsavel;
 	
-	public FrameCadastroDeTarefas(JDialog frame) {
-		criarTela(frame);
+	public FrameCadastroDeTarefas(JDialog dialog) {
+		criarTela(dialog);
 	}
 	
 	
-	public void criarTela(JDialog frame) {
-		JDialog tela = new JDialog();		
+	public void criarTela(JDialog dialog) {
+		JDialog tela = new JDialog(dialog, true);		
 		tela.setTitle("Cadastro de Tarefas");
 		tela.setSize(400, 600);
 		tela.setResizable(false);
 		tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		tela.setLayout(null);
-		tela.setLocationRelativeTo(null);
+		tela.setLocationRelativeTo(dialog);
 		
 		labelTitulo = new JLabel("Título:");
 		labelTitulo.setBounds(10, 10, 200, 30);
@@ -68,8 +68,12 @@ public class FrameCadastroDeTarefas {
 		
 		labelStatus = new JLabel("Status:");
 		labelStatus.setBounds(10, 325, 150, 30);
-		JComboBox<Status> cmbstatus = new JComboBox<Status>();
-		cmbstatus.setBounds(10, 355, 150, 30);
+		JComboBox<Status> cmbStatus = new JComboBox<>(Status.values());
+		cmbStatus.setBounds(10, 355, 150, 30);
+		
+		labelResponsavel = new JLabel("Responsável:");
+		labelResponsavel.setBounds(10, 385, 150, 30);
+		
 		
 		
 		
@@ -85,6 +89,8 @@ public class FrameCadastroDeTarefas {
 		painel.add(labelDataDeConclusao);
 		painel.add(txtDataDeConclusao);
 		painel.add(labelStatus);
+		painel.add(cmbStatus);
+		painel.add(labelResponsavel);
 		
 		
 		tela.setVisible(true);

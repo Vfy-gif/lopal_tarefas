@@ -31,7 +31,7 @@ public class FrameListaDeTarefas {
 		Dimension tamanho = new Dimension();
 		tamanho.setSize(500, 420);
 		tela.setSize(tamanho);
-		tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		tela.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		tela.setTitle("Lista de Tarefas");
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(null);
@@ -57,7 +57,7 @@ public class FrameListaDeTarefas {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				FrameCadastroDeTarefas novaTarefa = new FrameCadastroDeTarefas(tela);
-				novaTarefa.criarTela(tela);
+				
 				
 			}
 		});
@@ -69,7 +69,7 @@ public class FrameListaDeTarefas {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
 			tela.dispose();
 				
 			}
