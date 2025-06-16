@@ -37,7 +37,7 @@ public class FrameCadastroDeTarefas {
 		tela.setTitle("Cadastro de Tarefas");
 		tela.setSize(400, 600);
 		tela.setResizable(false);
-		tela.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(null);
 		

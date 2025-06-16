@@ -19,6 +19,7 @@ public class FrameGerenciadorDeTarefas {
 		Dimension tamanho = new Dimension();
 		tamanho.setSize(470, 150);
 		tela.setSize(tamanho);
+		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.setTitle("Gerenciador de Tarefas");
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(null);
