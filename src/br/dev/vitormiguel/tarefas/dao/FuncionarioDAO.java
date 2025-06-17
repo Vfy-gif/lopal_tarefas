@@ -75,4 +75,15 @@ public class FuncionarioDAO {
 		}
 	}
 	
+	public String[] getNomesFuncionarios() {
+		List<Funcionario> funcionarios = listar();
+		String[] nomes = new String[funcionarios.size()];
+
+		for (int i = 0; i < funcionarios.size(); i++) {
+			nomes[i] = funcionarios.get(i).getNome();
+		}
+
+		return nomes;
+	}
+	
 }

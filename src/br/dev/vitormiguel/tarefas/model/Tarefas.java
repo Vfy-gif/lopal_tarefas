@@ -7,7 +7,7 @@ public class Tarefas {
 	private String titulo;
 	private String descricao;
 	private String dataInicial;
-	private double prazo;
+	private String prazo;
 	private String dataConclusao;
 	private String codigo;
 	private Status status;
@@ -22,7 +22,7 @@ public class Tarefas {
 		this.codigo = Utils.gerarUUID8();
 	}
 	
-	public Tarefas(int prazo, String titulo) {
+	public Tarefas(String prazo, String titulo) {
 		
 		this.prazo = prazo;
 		this.titulo = titulo;
@@ -30,25 +30,41 @@ public class Tarefas {
 		
 	}
 	
-	public Tarefas(double prazo, String titulo, String descricao) {
+	public Tarefas(String prazo, String titulo, String descricao) {
 		this.prazo = prazo;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.codigo = Utils.gerarUUID8();
 	}
 	
-	public Tarefas(double prazo, String titulo, String descricao, String dataInicial, String dataConclusao, Status status, String[] responsavel) {
+	public Tarefas(String titulo,String descricao, String dataInicial, String prazo , String dataConclusao) {
+		
 		
 		this.prazo = prazo;
 		this.dataInicial = dataInicial;
-		this.dataConclusao = dataInicial + (prazo - 1);
+		this.dataConclusao = dataInicial;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.codigo = Utils.gerarUUID8();
+		
+		
+	}
+
+	
+	public Tarefas(String titulo,String descricao, String dataInicial, String prazo , String dataConclusao, Status status) {
+		
+		
+		this.prazo = prazo;
+		this.dataInicial = dataInicial;
+		this.dataConclusao = dataInicial;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.codigo = Utils.gerarUUID8();
 		this.status = status;
-		this.responsavel = responsavel;
 		
 	}
+	
+
 
 	public String getTitulo() {
 		return titulo;
@@ -74,11 +90,11 @@ public class Tarefas {
 		this.dataInicial = dataInicial;
 	}
 
-	public double getPrazo() {
+	public String getPrazo() {
 		return prazo;
 	}
 
-	public void setPrazo(double prazo) {
+	public void setPrazo(String prazo) {
 		this.prazo = prazo;
 	}
 

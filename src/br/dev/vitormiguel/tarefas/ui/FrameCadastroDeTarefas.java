@@ -10,9 +10,11 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.dev.vitormiguel.tarefas.dao.FuncionarioDAO;
+import br.dev.vitormiguel.tarefas.dao.TarefasDAO;
 import br.dev.vitormiguel.tarefas.model.Funcionario;
 import br.dev.vitormiguel.tarefas.model.Status;
 import br.dev.vitormiguel.tarefas.model.Tarefas;
@@ -27,12 +29,12 @@ public class FrameCadastroDeTarefas {
 	private JTextField txtDataIncial;
 	private JLabel labelDataDeConclusao;
 	private JTextField txtDataDeConclusao;
-	private JLabel labelprazo;
-	private JTextField txtprazo;
+	private JLabel labelPrazo;
+	private JTextField txtPrazo;
 	private JLabel labelStatus;
-	private JComboBox cmbStatus;
+	private JComboBox<Status> cmbStatus;
 	private JLabel labelResponsavel;
-	private JComboBox cmbResponsavel;
+	private JComboBox<String> cmbResponsavel;
 	private JButton btnSalvar;
 	private JButton btnSair;
 	
@@ -46,7 +48,7 @@ public class FrameCadastroDeTarefas {
 		tela.setTitle("Cadastro de Tarefas");
 		tela.setSize(400, 600);
 		tela.setResizable(false);
-		tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		tela.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(dialog);
 		
@@ -65,10 +67,10 @@ public class FrameCadastroDeTarefas {
 		txtDataIncial = new JTextField();
 		txtDataIncial.setBounds(10, 170, 365, 30);
 		
-		labelprazo = new JLabel("Prazo:");
-		labelprazo.setBounds(10, 205, 150, 30);
-		txtprazo = new JTextField();
-		txtprazo.setBounds(10, 235, 365, 30);
+		labelPrazo = new JLabel("Prazo:");
+		labelPrazo.setBounds(10, 205, 150, 30);
+		txtPrazo = new JTextField();
+		txtPrazo.setBounds(10, 235, 365, 30);
 		
 		labelDataDeConclusao = new JLabel("Data conclusão:");
 		labelDataDeConclusao.setBounds(10, 265, 150, 30);
@@ -82,48 +84,15 @@ public class FrameCadastroDeTarefas {
 		
 		labelResponsavel = new JLabel("Responsável:");
 		labelResponsavel.setBounds(10, 385, 150, 30);
-		JComboBox cmbResponsavel = new JComboBox();
+		
+		cmbResponsavel = new JComboBox<>(new FuncionarioDAO().getNomesFuncionarios());
 		cmbResponsavel.setBounds(10, 415, 150, 30);
-		
-		FuncionarioDAO dao = new FuncionarioDAO();
-		List<Funcionario> funcionarios = dao.listar();
-		
-		String[][] responsaveis = new String[funcionarios.size()][1];
-		int i = 0;
-		for (Funcionario f : funcionarios) {
-			responsaveis[0][0] = f.getNome();
-			i++;
-			
-			cmbResponsavel.addItem(responsaveis[0][0]);
-		}
-		String responsavelSelecionado = (String) cmbResponsavel.getSelectedItem();
-		
 		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(10, 465, 175, 40);
 		
-		btnSalvar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				limparFormulario();
-				
-			}
-		});
-		
 		btnSair = new JButton("Sair");
 		btnSair.setBounds(200, 465, 175, 40);
-		
-		btnSair.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				tela.dispose();
-				
-			}
-		});
-		
 		
 		Container painel = tela.getContentPane();
 		painel.add(labelTitulo);
@@ -132,8 +101,8 @@ public class FrameCadastroDeTarefas {
 		painel.add(txtDescricao);
 		painel.add(labelDataInicial);
 		painel.add(txtDataIncial);
-		painel.add(labelprazo);
-		painel.add(txtprazo);
+		painel.add(labelPrazo);
+		painel.add(txtPrazo);
 		painel.add(labelDataDeConclusao);
 		painel.add(txtDataDeConclusao);
 		painel.add(labelStatus);
@@ -146,15 +115,67 @@ public class FrameCadastroDeTarefas {
 		
 		tela.setVisible(true);
 		
+		
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				int resposta = JOptionPane.showConfirmDialog(null, "Deseja continuar?", "Confirmação",
+						JOptionPane.YES_NO_OPTION);
+				if (resposta == 0) {
+					tela.dispose();
+
+				}
+			}
+		});
+		
+		btnSalvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				double i = 0;
+				Tarefas t = new Tarefas(txtTitulo.getText(), txtDescricao.getText(), txtDataIncial.getText(), txtPrazo.getText(), txtDataDeConclusao.getText());
+				carregarDados();
+				limparFormulario();
+				
+			}
+		});}
+		
+		private void carregarDados() {
+			TarefasDAO dao = new TarefasDAO();
+			List<Tarefas> tarefas = dao.listar();
+			
+			Object[][] dados = new Object[tarefas.size()][3];
+			
+			int i = 0;
+			for (Tarefas t : tarefas) {
+				dados[i][0] = t.getTitulo();
+				dados[i][1] = t.getDescricao();
+				dados[i][2] = t.getDataInicial();
+				dados[i][3] = t.getPrazo();
+				dados[i][4] = t.getDataConclusao();
+				dados[i][5] = t.getStatus();
+				i++;
+			}
+		
+		
+		
+		
+		
 	}
 		private void limparFormulario() {
-			this.txtTitulo = null;
-			this.txtDescricao = null;
-			this.txtDataIncial = null;
-			this.txtprazo = null;
-			this.txtDataDeConclusao = null;
+			txtTitulo.setText(null);
+			txtDescricao.setText(null);
+			txtDataIncial.setText(null);
+			txtPrazo.setText(null);
+			txtDataDeConclusao.setText(null);
+			cmbResponsavel.setSelectedIndex(0);
+			cmbStatus.setSelectedIndex(0);
 			txtTitulo.requestFocus();
 		}
+
 	
 	
 }
