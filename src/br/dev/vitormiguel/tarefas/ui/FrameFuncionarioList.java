@@ -27,17 +27,19 @@ public class FrameFuncionarioList {
 	private DefaultTableModel modelFuncionarios;
 	private String[] colunas = {"CÓDIGO", "NOME", "CARGO"};
 	
-	public FrameFuncionarioList(JFrame frame) {
-		criarTela(frame);
+	public FrameFuncionarioList(JFrame gerenciadorDeTarefas) {
+		criarTela(gerenciadorDeTarefas);
 	}
 	
-	private void criarTela(JFrame frame) {
+	
+	private void criarTela(JFrame gerenciadorDeTarefas) {
 		
-		JDialog tela = new JDialog(frame, true);
+		// FuncionarioList virou JDialog
+		JDialog tela = new JDialog(gerenciadorDeTarefas, true);
 		tela.setSize(500, 500);
 		tela.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		tela.setLayout(null);
-		tela.setLocationRelativeTo(frame);
+		tela.setLocationRelativeTo(gerenciadorDeTarefas);
 		tela.setTitle("Lista da Funcionários");
 		tela.setResizable(false);
 		
@@ -80,6 +82,7 @@ public class FrameFuncionarioList {
 		painel.add(labelTitulo);
 		painel.add(scrollFuncionarios);
 		painel.add(btnCadastro);
+		
 		
 		tela.setVisible(true);
 		

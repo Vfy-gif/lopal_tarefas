@@ -10,50 +10,47 @@ public class Tarefas {
 	private String prazo;
 	private String dataConclusao;
 	private String codigo;
-	private Status status;
-	private String[] responsavel;
-	
+	private String status;
+	private String responsavel;
+
+	public Tarefas() {
+		this.codigo = Utils.gerarUUID8();
+	}
+
 	public Tarefas(String titulo) {
 		this.titulo = titulo;
 		this.codigo = Utils.gerarUUID8();
 	}
-	
-	public Tarefas() {
-		this.codigo = Utils.gerarUUID8();
-	}
-	
+
 	public Tarefas(String prazo, String titulo) {
-		
+
 		this.prazo = prazo;
 		this.titulo = titulo;
 		this.codigo = Utils.gerarUUID8();
-		
+
 	}
-	
+
 	public Tarefas(String prazo, String titulo, String descricao) {
 		this.prazo = prazo;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.codigo = Utils.gerarUUID8();
 	}
-	
-	public Tarefas(String titulo,String descricao, String dataInicial, String prazo , String dataConclusao) {
-		
-		
+
+	public Tarefas(String titulo, String descricao, String dataInicial, String prazo, String dataConclusao) {
+
 		this.prazo = prazo;
 		this.dataInicial = dataInicial;
 		this.dataConclusao = dataInicial;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.codigo = Utils.gerarUUID8();
-		
-		
+
 	}
 
-	
-	public Tarefas(String titulo,String descricao, String dataInicial, String prazo , String dataConclusao, Status status) {
-		
-		
+	public Tarefas(String titulo, String descricao, String dataInicial, String prazo, String dataConclusao,
+			String status, String responsavel) {
+
 		this.prazo = prazo;
 		this.dataInicial = dataInicial;
 		this.dataConclusao = dataInicial;
@@ -61,10 +58,9 @@ public class Tarefas {
 		this.descricao = descricao;
 		this.codigo = Utils.gerarUUID8();
 		this.status = status;
-		
-	}
-	
+		this.responsavel = responsavel;
 
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -113,27 +109,27 @@ public class Tarefas {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	
-	
-	public Status getStatus() {
+
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public String[] getResponsavel() {
+	public String getResponsavel() {
 		return responsavel;
 	}
 
-	public void setResponsavel(String[] responsavel) {
+	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
 
 	public String toString() {
-		String tarefa = titulo + "," + descricao + "," + dataInicial + "," + prazo + "," + dataConclusao + "," + status + "," + responsavel + "\n";
+		String tarefa = titulo + "," + descricao + "," + dataInicial + "," + prazo + "," + dataConclusao + "," + status
+				+ "," + responsavel + "\n";
 		return tarefa;
 	}
-	
+
 }
