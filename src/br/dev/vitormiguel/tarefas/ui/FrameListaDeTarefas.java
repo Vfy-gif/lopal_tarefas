@@ -23,14 +23,15 @@ public class FrameListaDeTarefas {
 	private JScrollPane scrollTarefas;
 	private JButton btnNovaTarefa;
 	private JButton btnsair;
-	private String[] colunas = { "CÓDIGO", "NOME", "RESPONSÁVEL" };
-
+	private String[] colunas = { "CÓDIGO", "TAREFA", "RESPONSÁVEL" };
+	
 	public FrameListaDeTarefas(JFrame gerenciadorDeTarefas) {
 		criarTela(gerenciadorDeTarefas);
 	}
 
 	public void criarTela(JFrame gerenciadorDeTarefas) {
 
+		
 		JDialog tela = new JDialog(gerenciadorDeTarefas, true);
 		Dimension tamanho = new Dimension();
 		tamanho.setSize(500, 420);
@@ -53,6 +54,8 @@ public class FrameListaDeTarefas {
 		scrollTarefas = new JScrollPane(tabelaTarefas);
 		scrollTarefas.setBounds(10, 20, 460, 300);
 
+		carregarDados();
+		
 		btnNovaTarefa = new JButton("Nova Tarefa");
 		btnNovaTarefa.setBounds(10, 330, 180, 40);
 

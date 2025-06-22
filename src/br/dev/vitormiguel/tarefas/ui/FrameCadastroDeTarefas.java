@@ -95,16 +95,14 @@ public class FrameCadastroDeTarefas {
 		FuncionarioDAO dao = new FuncionarioDAO();
 		List<Funcionario> funcionario = dao.listar();
 
-		String[][] responsaveis = new String[funcionario.size()][1];
-		int i = 0;
 		for (Funcionario f : funcionario) {
-			responsaveis[0][0] = f.getNome();
-			i++;
-
-			cmbResponsavel.addItem(responsaveis[0][0]);
-
+			cmbResponsavel.addItem(f.getNome()); // Adiciona diretamente o nome de cada funcionário
 		}
-		String responsavelSelecionado = (String) cmbResponsavel.getSelectedItem();
+
+		// Define o primeiro item como selecionado por padrão
+		if (funcionario.size() > 0) {
+			cmbResponsavel.setSelectedIndex(0);
+		}
 
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(10, 465, 175, 40);
@@ -142,6 +140,15 @@ public class FrameCadastroDeTarefas {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				String responsavelSelecionado = (String) cmbResponsavel.getSelectedItem();
+
+				// Verificar se há um responsável selecionado
+				if (responsavelSelecionado == null || responsavelSelecionado.isEmpty()) {
+					JOptionPane.showMessageDialog(tela, "Selecione um responsável!", "Aviso",
+							JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+
 				Funcionario f = new Funcionario();
 				// Este condigo, pega o status selecionado
 				Status statusEscolhido = (Status) cmbStatus.getSelectedItem();
@@ -150,8 +157,6 @@ public class FrameCadastroDeTarefas {
 				Tarefas t = new Tarefas(txtTitulo.getText(), txtDescricao.getText(), txtDataIncial.getText(),
 						txtPrazo.getText(), txtDataDeConclusao.getText(), statusEscolhido.name(),
 						responsavelSelecionado);
-				t.setResponsavel(f.getNome());
-				t.getResponsavel();
 
 				// Ler data inicial e prazo
 				String dataInicialStr = txtDataIncial.getText();

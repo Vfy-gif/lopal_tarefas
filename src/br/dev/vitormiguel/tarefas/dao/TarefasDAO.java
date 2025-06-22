@@ -48,35 +48,30 @@ public class TarefasDAO {
 			br.readLine();
 			br1.readLine();
 
-			while (linha != null) {
-				// extraíndo uma linha do arquivo
-				linha = br.readLine();
-				linha1 = br1.readLine();
+			while ((linha = br.readLine()) != null) {
+				if (!linha.trim().isEmpty()) {
+					String[] tarefaStr = linha.split(",");
 
-				// Criando um vetor
-				if (linha != null && linha1 != null) {
+					if (tarefaStr.length >= 7) { // Verifica se tem todos os campos
+						Tarefas tarefa = new Tarefas();
+						tarefa.setTitulo(tarefaStr[0]);
+						tarefa.setDescricao(tarefaStr[1]);
+						tarefa.setDataInicial(tarefaStr[2]);
+						tarefa.setPrazo(tarefaStr[3]);
+						tarefa.setDataConclusao(tarefaStr[4]);
+						tarefa.setStatus(tarefaStr[5]);
+						tarefa.setResponsavel(tarefaStr[6]);
 
-					String tarefaStr[] = linha.split(",");
-					String tarefaTstr[] = linha.split(",");
-
-					// Criando um objeto tarefa
-					Tarefas tarefa = new Tarefas();
-					tarefa.setTitulo(tarefaStr[0]);
-					tarefa.setDescricao(tarefaStr[1]);
-					tarefa.setDataInicial(tarefaStr[2]);
-					tarefa.setPrazo(tarefaStr[3]);
-					tarefa.setDataConclusao(tarefaStr[4]);
-
-					tarefas.add(tarefa);
+						tarefas.add(tarefa);
+					}
 				}
-
 			}
-
+			br.close();
 			return tarefas;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new ArrayList<Tarefas>(); // Retorna lista vazia em caso de erro
 		}
 	}
 
