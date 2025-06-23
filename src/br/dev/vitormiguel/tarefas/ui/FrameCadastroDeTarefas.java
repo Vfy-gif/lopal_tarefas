@@ -42,6 +42,7 @@ public class FrameCadastroDeTarefas {
 	private JLabel labelResponsavel;
 	private JComboBox cmbResponsavel;
 	private JButton btnSalvar;
+	private JButton btnSair;
 
 	public FrameCadastroDeTarefas(JDialog dialog) {
 		criarTela(dialog);
@@ -106,6 +107,10 @@ public class FrameCadastroDeTarefas {
 
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(10, 465, 175, 40);
+		
+		btnSair = new JButton("Sair");
+		btnSair.setBounds(190, 465, 175, 40);
+		
 
 		Container painel = tela.getContentPane();
 		painel.add(labelTitulo);
@@ -123,6 +128,7 @@ public class FrameCadastroDeTarefas {
 		painel.add(labelResponsavel);
 		painel.add(cmbResponsavel);
 		painel.add(btnSalvar);
+		painel.add(btnSair);
 
 		txtDataIncial.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent e) {
@@ -135,11 +141,28 @@ public class FrameCadastroDeTarefas {
 			}
 		});
 
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				int resposta = JOptionPane.showConfirmDialog(tela, "Confirma a saída do sistema?");
+				
+				if (resposta == 0) {
+					tela.dispose();
+				}
+				
+			}
+		});
+		
 		btnSalvar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				try {
+					
+				
 				String responsavelSelecionado = (String) cmbResponsavel.getSelectedItem();
 
 				// Verificar se há um responsável selecionado
@@ -175,8 +198,14 @@ public class FrameCadastroDeTarefas {
 				JOptionPane.showMessageDialog(tela, txtTitulo.getText() + " gravado com sucesso", "Sucesso !!!",
 						JOptionPane.INFORMATION_MESSAGE);
 				limparFormulario();
-
+				
+				} catch (Exception erro) {
+					JOptionPane.showMessageDialog(tela, "Por favor, corrija os campos preenchidos incorretamente", "ERRO",
+					JOptionPane.INFORMATION_MESSAGE);
+				}
+				
 			}
+			
 		});
 
 		tela.setVisible(true);

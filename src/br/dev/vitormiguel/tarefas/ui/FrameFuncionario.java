@@ -102,6 +102,10 @@ public class FrameFuncionario {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					
+				
+				
 				Funcionario f = 
 						new Funcionario(
 						txtCargo.getText(),
@@ -113,6 +117,9 @@ public class FrameFuncionario {
 				
 				JOptionPane.showMessageDialog(tela, txtNome.getText() + "\ngravado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 				limparFormulario();
+				} catch (Exception erro) {
+					JOptionPane.showMessageDialog(tela, "Por favor, corrija os campos preenchidos incorretamente", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		

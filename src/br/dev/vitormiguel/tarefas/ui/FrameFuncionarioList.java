@@ -22,6 +22,7 @@ public class FrameFuncionarioList {
 
 	private JLabel labelTitulo;
 	private JButton btnCadastro;
+	private JButton btnSair;
 	private JTable tabelaFuncionarios;
 	private JScrollPane scrollFuncionarios;
 	private DefaultTableModel modelFuncionarios;
@@ -79,9 +80,23 @@ public class FrameFuncionarioList {
 			}
 		});
 		
+		btnSair = new JButton("Sair");
+		btnSair.setBounds(220, 380, 200, 40);
+		
+		btnSair.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				tela.dispose();
+				
+			}
+		});
+		
 		painel.add(labelTitulo);
 		painel.add(scrollFuncionarios);
 		painel.add(btnCadastro);
+		painel.add(btnSair);
 		
 		
 		tela.setVisible(true);

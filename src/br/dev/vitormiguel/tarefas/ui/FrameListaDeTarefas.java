@@ -22,7 +22,7 @@ public class FrameListaDeTarefas {
 	private DefaultTableModel modelTarefas;
 	private JScrollPane scrollTarefas;
 	private JButton btnNovaTarefa;
-	private JButton btnsair;
+	private JButton btnSair;
 	private String[] colunas = { "CÓDIGO", "TAREFA", "RESPONSÁVEL" };
 	
 	public FrameListaDeTarefas(JFrame gerenciadorDeTarefas) {
@@ -70,10 +70,10 @@ public class FrameListaDeTarefas {
 			}
 		});
 
-		btnsair = new JButton("Sair");
-		btnsair.setBounds(200, 330, 180, 40);
+		btnSair = new JButton("Sair");
+		btnSair.setBounds(200, 330, 180, 40);
 
-		btnsair.addActionListener(new ActionListener() {
+		btnSair.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -87,7 +87,7 @@ public class FrameListaDeTarefas {
 		Container painel = tela.getContentPane();
 		painel.add(scrollTarefas);
 		painel.add(btnNovaTarefa);
-		painel.add(btnsair);
+		painel.add(btnSair);
 
 		tela.setVisible(true);
 
